@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNoticiaRequest;
 use App\Http\Requests\UpdateNoticiaRequest;
 use App\Models\Categoria;
+use App\Models\Meneo;
 use App\Models\Noticia;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,5 +91,14 @@ class NoticiaController extends Controller
     {
         $noticia->delete();
         return redirect()->route('noticias.index')->with('success', 'Noticia eliminada con éxito.');
+    }
+
+    public function menear(Noticia $noticia)
+    {
+        $meneo = new Meneo();
+        $meneo->user_id = Auth::id();
+        $meneo->noticia_id = $noticia->id;
+        $meneo->save();
+        return redirect()->route('noticias.index')->with('success', 'Noticia meneada con éxito.');
     }
 }

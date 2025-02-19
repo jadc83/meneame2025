@@ -10,4 +10,5 @@ class Meneo extends Model
     /** @use HasFactory<\Database\Factories\MeneoFactory> */
     use HasFactory;
 
+    protected $fillable = ['user_id', 'noticia_id'];
 }

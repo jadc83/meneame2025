@@ -11,7 +11,8 @@
             <h1 class="flex">
                 <a href="{{ $noticia->url }}"> {{ $noticia->titulo }}</a> |
                 {{ $noticia->resumen }} |
-                Categoria: {{ $noticia->categoria->denominacion }}
+                Categoria: {{ $noticia->categoria->denominacion }} |
+                Meneos: {{ $noticia->meneos->count() }}
             </h1>
             <div class="mt-2">
                 <form action="{{ route('noticias.edit', $noticia) }}" method="get">
@@ -26,6 +27,10 @@
                 <form action="{{ route('noticias.show', $noticia) }}" method="get">
                     @csrf
                     <x-primary-button class="text-2xl">Comentarios</x-primary-button>
+                </form>
+                <form action="{{ route('noticias.menear', $noticia) }}" method="post">
+                    @csrf
+                    <x-primary-button class="text-2xl">Menear</x-primary-button>
                 </form>
             </div>
         </div>
