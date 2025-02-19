@@ -72,7 +72,7 @@ class NoticiaController extends Controller
     public function update(UpdateNoticiaRequest $request, Noticia $noticia)
     {
 
-        $noticia->fill($request->validated());
+        $noticia->update($request->validated());
         if ($request->hasFile('imagen')) {
             $ruta = $request->file('imagen')->store('fotos', 'public');
             $noticia->imagen = $ruta;
@@ -88,6 +88,7 @@ class NoticiaController extends Controller
      */
     public function destroy(Noticia $noticia)
     {
-        //
+        $noticia->delete();
+        return redirect()->route('noticias.index')->with('success', 'Noticia eliminada con éxito.');
     }
 }
