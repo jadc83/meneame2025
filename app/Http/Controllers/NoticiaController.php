@@ -71,13 +71,11 @@ class NoticiaController extends Controller
      */
     public function update(UpdateNoticiaRequest $request, Noticia $noticia)
     {
-        $noticia->user_id = Auth::id();
+
         $noticia->fill($request->validated());
-
-
         if ($request->hasFile('imagen')) {
-            $fotoPath = $request->file('imagen')->store('fotos', 'public');
-            $noticia->imagen = $fotoPath;
+            $ruta = $request->file('imagen')->store('fotos', 'public');
+            $noticia->imagen = $ruta;
         }
 
         $noticia->save();

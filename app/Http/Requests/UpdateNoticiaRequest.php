@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateNoticiaRequest extends FormRequest
 {
@@ -11,7 +12,13 @@ class UpdateNoticiaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $noticia = $this->route('noticia');
+
+        if(Auth::id() != $noticia->user_id){
+            return abort(403, 'Estas intentando cambiar una noticia que no es tuya');
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -25,8 +32,13 @@ class UpdateNoticiaRequest extends FormRequest
             'titulo' => 'required|string|max:50',
             'resumen' => 'required|string|max:100',
             'url' => 'required|string|max:200',
-            'categoria_id' => 'required|exists:categorias,id',
             'imagen' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ];
+    }
+
+    public function messages(): array {
+        return ['titulo.required' => 'El titulo es obligatorio',
+                'resumen.required' => 'El resumen es obligatorio',
+                'url.required' => 'La URL es obligatoria'];
     }
 }

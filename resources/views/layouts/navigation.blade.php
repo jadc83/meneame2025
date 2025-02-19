@@ -15,7 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('noticias.index')" :active="request()->routeIs('noticias.index')">
+                        {{ __('Noticias') }}
+                    </x-nav-link>
                 </div>
+            </div>
+
+            <div class="mt-2">
+                <form action="{{ route('noticias.create')}}" method="get">
+                    @csrf
+                    <x-primary-button class="text-2xl">+</x-primary-button>
+                </form>
             </div>
 
             <!-- Settings Dropdown -->

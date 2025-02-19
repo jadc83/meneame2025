@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="flex justify-center items-center">
-        <form class="max-w-sm mx-auto" method="POST" action="{{ isset($noticia) ? route('noticias.update', $noticia->id) : route('noticias.store') }}"
+        <form class="max-w-sm mx-auto" method="POST" action="{{ isset($noticia) ? route('noticias.update', $noticia) : route('noticias.store') }}"
             enctype="multipart/form-data">
 
             @csrf
