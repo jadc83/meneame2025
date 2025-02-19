@@ -11,7 +11,6 @@
             <h1 class="flex">
                 <a href="{{ $noticia->url }}"> {{ $noticia->titulo }}</a> |
                 {{ $noticia->resumen }} |
-                Usuario: {{ $noticia->usuario->name}} |
                 Categoria: {{ $noticia->categoria->denominacion }}
             </h1>
             <div class="mt-2">

@@ -17,6 +17,11 @@ class User extends Authenticatable
         return $this->hasMany(Noticia::class);
     }
 
+    public function meneos()
+    {
+        return $this->belongsToMany(Noticia::class, 'meneos', 'user_id', 'noticia_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

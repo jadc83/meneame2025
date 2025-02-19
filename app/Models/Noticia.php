@@ -20,8 +20,8 @@ class Noticia extends Model
 
     }
 
-    public function usuario()
+    public function meneos()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(User::class, 'meneos', 'noticia_id', 'user_id');
     }
 }
