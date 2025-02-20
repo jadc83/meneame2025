@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex bg-orange-300 w-8/12 mx-auto m-4 p-4 rounded-lg shadow-lg">
+    <div class="flex bg-indigo-600 w-8/12 mx-auto m-4 p-4 rounded-lg shadow-lg border-2 border-orange-600 border-full">
         <div class="flex justify-center items-center mb-6">
             @if ($noticia->imagen)
                 <img class="w-32 h-20 object-cover rounded-lg" src="{{ asset('storage/' . $noticia->imagen) }}"
@@ -11,11 +11,11 @@
 
 
         <div class="flex flex-col justify-center ml-4">
-            <h1 class="text-lg font-semibold">
-                <a href="{{ $noticia->url }}" class="text-blue-600">{{ $noticia->titulo }}</a>
+            <h1 class="text-lg font-semibold text-white">
+                <a href="{{ $noticia->url }}" class="text-white">{{ $noticia->titulo }}</a>
             </h1>
-            <p class="text-sm text-gray-700"><strong>Subida por: </strong>{{ $noticia->propietario->name }} <strong>Categoria:</strong>{{ $noticia->categoria->denominacion }}</p>
-            <p class="text-xl text-gray-700">{{ $noticia->resumen }}</p>
+            <p class="text-sm text-white"><strong>Subida por: </strong>{{ $noticia->propietario->name }} <strong>Categoria:</strong>{{ $noticia->categoria->denominacion }}</p>
+            <p class="text-xl text-white">{{ $noticia->resumen }}</p>
 
         </div>
         <div class="ml-24">
@@ -31,7 +31,7 @@
 
 
 
-    <div class="flex-col w-8/12 bg-orange-300 mx-auto p-4 rounded-lg mb-6">
+    <div class="flex-col w-8/12 bg-orange-300 mx-auto p-4 rounded-lg mb-6 border-2 border-indigo-600 border-full">
         @foreach ($noticia->comentarios as $comentario)
             <x-comentario :comentario="$comentario" />
         @endforeach
