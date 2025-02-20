@@ -10,6 +10,8 @@ class Comentario extends Model
     /** @use HasFactory<\Database\Factories\ComentarioFactory> */
     use HasFactory;
 
+    public $fillable = ['contenido', 'comentable_type', 'comentable_id'];
+
     public function comentable()
     {
         return $this->morphTo();

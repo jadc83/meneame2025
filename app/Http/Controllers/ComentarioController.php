@@ -40,16 +40,18 @@ class ComentarioController extends Controller
         $comentario->save();
     }
 
-    public function subcomentar(StoreComentarioRequest $request, Comentario $comentario )
+    public function subcomentar(StoreComentarioRequest $request)
     {
-        $subComentario = Comentario::create([
-            'contenido' => 'Este es un subcomentario.',
-            'comentable_type' => Comentario::class,
-            'comentable_id' => $comentario->id, // Asociamos este subcomentario al comentario principal
+
+        Comentario::create([
+            'contenido' => $request->contenido, // Contenido del subcomentario desde el formulario
+            'comentable_type' => $request->comentable_type, // Indica que el padre es otro comentario
+            'comentable_id' => $request->comentable_id, // ID del comentario al que responde
         ]);
 
-        $subComentario->save();
+        return back()->with('success', 'Subcomentario agregado correctamente.');
     }
+
 
     /**
      * Display the specified resource.

@@ -15,7 +15,7 @@ class UpdateNoticiaRequest extends FormRequest
         $noticia = $this->route('noticia');
 
         if(Auth::id() != $noticia->user_id){
-            return abort(403, '<h1>Estas intentando cambiar una noticia que no es tuya</h1>');
+            return abort(403, 'Estas intentando cambiar una noticia que no es tuya');
         }
 
         return true;
