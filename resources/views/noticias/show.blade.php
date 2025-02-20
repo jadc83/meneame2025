@@ -9,14 +9,27 @@
             @endif
         </div>
 
+
         <div class="flex flex-col justify-center ml-4">
             <h1 class="text-lg font-semibold">
                 <a href="{{ $noticia->url }}" class="text-blue-600">{{ $noticia->titulo }}</a>
             </h1>
-            <p class="text-sm text-gray-700">{{ $noticia->resumen }}</p>
-            <p class="text-xs text-gray-600">Categoria: {{ $noticia->categoria->denominacion }}</p>
+            <p class="text-sm text-gray-700"><strong>Subida por: </strong>{{ $noticia->propietario->name }} <strong>Categoria:</strong>{{ $noticia->categoria->denominacion }}</p>
+            <p class="text-xl text-gray-700">{{ $noticia->resumen }}</p>
+
+        </div>
+        <div class="ml-24">
+            <form method="POST" action="{{ route('comentarios.store', $noticia) }}">
+                @csrf
+                <input type="hidden" name="comentable_id" value="{{ $noticia->id }}">
+                <input type="hidden" name="comentable_type" value="App\Models\Noticia">
+                <textarea name="contenido" class="w-full p-2 border rounded" placeholder="Escribe tu respuesta..." required></textarea>
+                <x-primary-button>Responder</x-primary-button>
+            </form>
         </div>
     </div>
+
+
 
     <div class="flex-col w-8/12 bg-orange-300 mx-auto p-4 rounded-lg mb-6">
         @foreach ($noticia->comentarios as $comentario)

@@ -14,10 +14,9 @@ class Noticia extends Model
 
     public $fillable = ['titulo', 'resumen', 'url', 'user_id', 'categoria_id'];
 
-    public function categoria(){
-
+    public function categoria()
+    {
         return $this->belongsTo(Categoria::class);
-
     }
 
     public function meneos()
@@ -28,5 +27,10 @@ class Noticia extends Model
     public function comentarios()
     {
         return $this->morphMany(Comentario::class, 'comentable');
+    }
+
+    public function propietario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

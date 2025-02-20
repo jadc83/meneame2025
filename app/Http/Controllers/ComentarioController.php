@@ -31,13 +31,14 @@ class ComentarioController extends Controller
     public function store(StoreComentarioRequest $request, Noticia $noticia)
     {
 
-            $comentario = Comentario::create([
-            'contenido' => 'Este es un comentario principal.',
-            'comentable_type' => Noticia::class,
-            'comentable_id' => $noticia->id,
+        Comentario::create([
+            'contenido' => $request->contenido, // Contenido del subcomentario desde el formulario
+            'comentable_type' => $request->comentable_type, // Indica que el padre es otro comentario
+            'comentable_id' => $request->comentable_id, // ID del comentario al que responde
         ]);
 
-        $comentario->save();
+        return back()->with('success', 'Comentario agregado correctamente.');
+
     }
 
     public function subcomentar(StoreComentarioRequest $request)

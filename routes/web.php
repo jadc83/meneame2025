@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('noticias', NoticiaController::class );
+    Route::resource('comentarios', ComentarioController::class);
     Route::post('/noticias/{noticia}/menear', [NoticiaController::class, 'menear'])->name('noticias.menear');
     Route::get('/noticias/{noticia}/desmenear', [NoticiaController::class, 'desmenear'])->name('noticias.desmenear');
     Route::post('/comentarios/subcomentar', [ComentarioController::class, 'subcomentar'])->name('comentarios.subcomentar');
