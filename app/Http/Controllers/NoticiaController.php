@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNoticiaRequest;
 use App\Http\Requests\UpdateNoticiaRequest;
 use App\Models\Categoria;
+use App\Models\Comentario;
 use App\Models\Meneo;
 use App\Models\Noticia;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +55,10 @@ class NoticiaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Noticia $noticia)
+    public function show(Noticia $noticia, Comentario $comentario)
     {
-        return view('noticias.show', ['noticia' => $noticia]);
+        $comentarios = $comentario->comentarios;
+        return view('noticias.show', ['noticia' => $noticia, 'comentarios' => $comentarios]);
     }
 
     /**

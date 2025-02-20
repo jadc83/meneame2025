@@ -24,4 +24,9 @@ class Noticia extends Model
     {
         return $this->belongsToMany(User::class, 'meneos', 'noticia_id', 'user_id');
     }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'comentable');
+    }
 }
