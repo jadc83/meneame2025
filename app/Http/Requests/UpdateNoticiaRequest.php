@@ -16,9 +16,10 @@ class UpdateNoticiaRequest extends FormRequest
 
         if(Auth::id() != $noticia->user_id){
             return abort(403, '<h1>Estas intentando cambiar una noticia que no es tuya</h1>');
-        } else {
-            return true;
         }
+
+        return true;
+
     }
 
     /**

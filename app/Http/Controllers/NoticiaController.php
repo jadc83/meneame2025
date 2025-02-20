@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\Meneo;
 use App\Models\Noticia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NoticiaController extends Controller
 {
@@ -98,7 +99,32 @@ class NoticiaController extends Controller
         $meneo = new Meneo();
         $meneo->user_id = Auth::id();
         $meneo->noticia_id = $noticia->id;
+
+        $comprobar = DB::table('meneos')
+                        ->where('user_id', $meneo->user_id)
+                        ->where('noticia_id', $noticia->id)
+                        ->exists();
+
+    if ($comprobar) {
+        return redirect()->route('noticias.index')->with('error', 'Ya has meneado esta noticia.');
+    }
         $meneo->save();
         return redirect()->route('noticias.index')->with('success', 'Noticia meneada con éxito.');
+    }
+
+    public function desmenear(Noticia $noticia)
+    {
+        $meneo = Meneo::where('user_id', Auth::id())
+                      ->where('noticia_id', $noticia->id)
+                      ->first();
+
+        if ($meneo) {
+            $meneo->delete();
+
+            return redirect()->route('noticias.index')->with('success', 'Noticia desmeneada con éxito.');
+        }
+
+        return redirect()->route('noticias.index')->with('error', 'No existe el meneo para esta noticia.');
+
     }
 }

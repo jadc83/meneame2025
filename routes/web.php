@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('noticias', NoticiaController::class );
     Route::post('/noticias/{noticia}/menear', [NoticiaController::class, 'menear'])->name('noticias.menear');
+    Route::get('/noticias/{noticia}/desmenear', [NoticiaController::class, 'desmenear'])->name('noticias.desmenear');
+
+
 
 });
 
