@@ -14,7 +14,7 @@
                 Categoria: {{ $noticia->categoria->denominacion }} |
                 Meneos: {{ $noticia->meneos->count() }}
             </h1>
-            <div class="mt-2">
+            <div class="mt-2 flex">
                 <form action="{{ route('noticias.edit', $noticia) }}" method="get">
                     @csrf
                     <x-primary-button class="text-2xl">Editar</x-primary-button>
@@ -35,9 +35,7 @@
                 <form action="{{ route('noticias.desmenear', $noticia) }}" method="GET">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5">
-                        Desmenear
-                    </button>
+                    <x-primary-button class="text-2xl">Desmenear</x-primary-button>
                 </form>
 
             </div>

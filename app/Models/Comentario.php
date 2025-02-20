@@ -15,7 +15,7 @@ class Comentario extends Model
         return $this->morphTo();
     }
 
-    public function subcomentarios()
+    public function comentarios()
     {
         return $this->morphMany(Comentario::class, 'comentable');
     }
